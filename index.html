@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limpador de Chaves e Documentos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="container">
+        <div class="glass-card">
+            <div class="header">
+                <h2>Sanitizador de Dados</h2>
+                <p>Remova pontos, traços, barras e espaços instantaneamente.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="docInput">CPF, CNPJ ou Chave de Acesso:</label>
+                <input 
+                    type="text" 
+                    id="docInput" 
+                    placeholder="Ex: 123.456.789-00 ou 00.000.000/0001-00"
+                    autocomplete="off"
+                >
+            </div>
+
+            <div class="output-group">
+                <label>Resultado Limpo:</label>
+                <div class="result-box">
+                    <input type="text" id="docOutput" readonly placeholder="Aguardando entrada...">
+                    <button id="copyBtn" onclick="copyToClipboard()">Copiar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+</html>
