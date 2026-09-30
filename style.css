@@ -6,22 +6,31 @@
 }
 
 body {
-    background-color: #0b0f19; /* Fundo escuro profundo */
+    background-color: #0b0f19;
     background-image: radial-gradient(circle at top right, #1e1b4b, #0b0f19);
     color: #e2e8f0;
     min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
 }
 
 .container {
     width: 100%;
-    max-width: 500px;
-    padding: 20px;
+    max-width: 1100px; /* Largura expandida para caber os dois blocos */
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide em duas colunas iguais */
+    gap: 24px; /* Espaço entre os blocos */
 }
 
-/* Efeito Glassmorphism */
+/* Responsividade: Volta a empilhar no celular ou tablets menores */
+@media (max-width: 768px) {
+    .container {
+        grid-template-columns: 1fr;
+    }
+}
+
 .glass-card {
     background: rgba(30, 41, 59, 0.4);
     backdrop-filter: blur(12px);
@@ -31,6 +40,8 @@ body {
     padding: 32px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 
                 inset 0 0 0 1px rgba(255, 255, 255, 0.05);
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
@@ -65,7 +76,7 @@ label {
     margin-bottom: 8px;
 }
 
-input[type="text"] {
+input[type="text"], textarea {
     width: 100%;
     background: rgba(15, 23, 42, 0.6);
     border: 1px solid #334155;
@@ -75,14 +86,15 @@ input[type="text"] {
     font-size: 1rem;
     outline: none;
     transition: all 0.3s ease;
+    resize: vertical;
 }
 
-input[type="text"]:focus {
+input[type="text"]:focus, textarea:focus {
     border-color: #8b5cf6;
     box-shadow: 0 0 15px rgba(139, 92, 246, 0.3);
 }
 
-input[type="text"]::placeholder {
+input[type="text"]::placeholder, textarea::placeholder {
     color: #475569;
 }
 
@@ -91,24 +103,46 @@ input[type="text"]::placeholder {
     gap: 12px;
 }
 
-#docOutput {
+.result-box-col {
+    flex-direction: column;
+    flex: 1;
+}
+
+#docOutput, #keysOutput {
     background: rgba(0, 0, 0, 0.2);
     border-color: #1e293b;
     color: #38bdf8;
     font-family: monospace;
-    font-size: 1.1rem;
-    letter-spacing: 1px;
+}
+
+#keysOutput {
+    color: #10b981;
+    line-height: 1.6;
+    font-size: 0.95rem;
+    flex: 1; /* Faz o textarea preencher o espaço restante no card */
+}
+
+#keyCount {
+    color: #38bdf8;
+    font-weight: bold;
 }
 
 button {
     background: linear-gradient(135deg, #8b5cf6, #3b82f6);
     color: white;
     border: none;
-    padding: 0 24px;
+    padding: 14px 24px;
     border-radius: 8px;
     font-weight: 600;
     cursor: pointer;
     transition: opacity 0.2s, transform 0.1s;
+    width: 100%;
+}
+
+@media (min-width: 400px) {
+    .result-box:not(.result-box-col) button {
+        width: auto;
+    }
 }
 
 button:hover {

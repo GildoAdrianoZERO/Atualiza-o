@@ -3,32 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Limpador de Chaves e Documentos</title>
+    <title>Utilitários de Documentos e Notas</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <main class="container">
+        <!-- 1. Sanitizador Unitário -->
         <div class="glass-card">
             <div class="header">
-                <h2>Sanitizador de Dados</h2>
-                <p>Remova pontos, traços, barras e espaços instantaneamente.</p>
+                <h2>Sanitizador Unitário</h2>
+                <p>Remova pontos, traços e espaços de um CPF, CNPJ ou Chave.</p>
             </div>
             
             <div class="input-group">
-                <label for="docInput">CPF, CNPJ ou Chave de Acesso:</label>
-                <input 
-                    type="text" 
-                    id="docInput" 
-                    placeholder="Ex: 123.456.789-00 ou 00.000.000/0001-00"
-                    autocomplete="off"
-                >
+                <label for="docInput">Documento ou Chave:</label>
+                <input type="text" id="docInput" placeholder="Ex: 123.456.789-00" autocomplete="off">
             </div>
 
             <div class="output-group">
                 <label>Resultado Limpo:</label>
                 <div class="result-box">
                     <input type="text" id="docOutput" readonly placeholder="Aguardando entrada...">
-                    <button id="copyBtn" onclick="copyToClipboard()">Copiar</button>
+                    <button id="copyBtn" onclick="copyToClipboard('docOutput', 'copyBtn')">Copiar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Extrator de Chaves de NF-e -->
+        <div class="glass-card">
+            <div class="header">
+                <h2>Extrator de Chaves de NF-e</h2>
+                <p>Cole e-mails, planilhas ou XMLs. O app filtra apenas as chaves válidas.</p>
+            </div>
+            
+            <div class="input-group">
+                <label for="textInput">Cole o texto aqui:</label>
+                <textarea id="textInput" rows="4" placeholder="Cole o texto contendo as chaves grudadas ou misturadas com outras informações..."></textarea>
+            </div>
+
+            <div class="output-group">
+                <label>Chaves Encontradas (<span id="keyCount">0</span>):</label>
+                <div class="result-box result-box-col">
+                    <textarea id="keysOutput" rows="5" readonly placeholder="Nenhuma chave detectada..."></textarea>
+                    <button id="copyKeysBtn" onclick="copyToClipboard('keysOutput', 'copyKeysBtn')">Copiar Todas</button>
                 </div>
             </div>
         </div>
